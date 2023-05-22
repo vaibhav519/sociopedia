@@ -63,15 +63,18 @@ const Form = () => {
     }
     formData.append("picturePath", values.picture.name);
 
-    const savedUserResponse = await fetch("http://localhost:3001/auth/login", {
-      method: "POST",
-      body: formData,
-    });
+    const savedUserResponse = await fetch(
+      "http://localhost:3001/auth/register",
+      {
+        method: "POST",
+        body: formData,
+      }
+    );
     const savedUser = await savedUserResponse.json();
     onSubmitProps.resetForm();
 
     if (savedUser) {
-      setPageType("Login");
+      setPageType("login");
     }
   };
 
@@ -116,7 +119,7 @@ const Form = () => {
         setFieldValue,
         resetForm,
       }) => {
-        <form onSubmit={handleSubmit}>
+        return (<form onSubmit={handleSubmit}>
           <Box
             display="grid"
             gap="30px"
@@ -242,7 +245,7 @@ const Form = () => {
                 "&:hover": { color: palette.primary.main },
               }}
             >
-              {isLogin ? "LOGIN" : "REGISTER"}
+              {isLogin ? "LOGIN NOW" : "REGISTER"}
             </Button>
             <Typography
               onClick={() => {
@@ -263,7 +266,8 @@ const Form = () => {
                 : "Already have an account? Login here."}
             </Typography>
           </Box>
-        </form>;
+        </form>
+        );
       }}
     </Formik>
   );
