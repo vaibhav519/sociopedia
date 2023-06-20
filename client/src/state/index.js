@@ -4,8 +4,7 @@ const initialState = {
   mode: "light",
   user: null,
   token: null,
-  posts: [],
-};
+ };
 
 export const authSlice = createSlice({
   name: "auth",
@@ -26,13 +25,13 @@ export const authSlice = createSlice({
     setFriends: (state, action) => {
       if (state.user) {
         state.user.friends = action.payload.friends;
+        console.log(state.user.friends + "here")
       } else {
         console.log("user friend non existence");
       }
     },
     setPosts: (state, action) => {
       state.posts = action.payload.posts;
-      console.log(state.posts)
     },
     setPost: (state, action) => {
       const updatedPost = state.posts.map((post) => {
